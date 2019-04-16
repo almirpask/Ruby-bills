@@ -1,0 +1,60 @@
+<h1>Ruby bills</h1>
+<p> <%= link_to  "Categories", categories_path %> </p>
+<p> <%= link_to  "Expenses", expenses_path %> </p>
+<p> <%= link_to  "Incomes", incomes_path %> </p>
+<br>
+
+<h2> Current Balance: <%= @incomes_total - @expenses_total%> </h2>
+<br>
+<h1>Incomes total: <%= @incomes_total%></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+      <th>Category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @incomes.each do |income| %>
+      <tr>
+        <td><%= income.name %></td>
+        <td><%= income.value %></td>
+        <td><%= income.category.name %></td>
+        <td><%= link_to 'Show', income %></td>
+        <td><%= link_to 'Edit', edit_income_path(income) %></td>
+        <td><%= link_to 'Destroy', income, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<h1>Expenses total:  <%= @expenses_total %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+      <th>Category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @expenses.each do |expense| %>
+      <tr>
+        <td><%= expense.name %></td>
+        <td><%= expense.value %></td>
+        <td><%= expense.category.name %></td>
+        <td><%= link_to 'Show', expense %></td>
+        <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
+        <td><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
